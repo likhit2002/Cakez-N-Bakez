@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGN UP | Cakez N Bakez</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- header section starts  -->
+
+<header>
+
+    <div class="header-1">
+
+        <a href="index.html" class="logo"><i class="fas fa-shopping-basket"></i>Cakez n Bakez</a>
+
+        <form action="" class="search-box-container">
+            <input type="search" id="search-box" placeholder="search here...">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+
+    </div>
+
+    <div class="header-2">
+
+        <div id="menu-bar" class="fas fa-bars"></div>
+
+        <nav class="navbar">
+            <a href="index.html">home</a>
+            <a href="index.html">category</a>
+            <a href="index.html">products</a>
+            <a href="index.html">special</a>
+            <a href="index.html">contact Us</a>
+        </nav>
+
+        <div class="icons">
+            <a href="#" class="fas fa-shopping-cart"></a>
+            <a href="#" class="fas fa-heart"></a>
+            <a href="Login.html" class="fas fa-user-circle"></a>
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- Content -->
+
+<div class="backdrop"></div>
+<div class="signup-container">
+<div class="login-wrapper">
+    <form id="reg-form" class="login-html">
+        <div class="login-heading">
+            <h1 class="tab">SIGN UP</h1>
+        </div>
+        <br>
+        <div class="login-form">
+            <div class="sign-up-html">
+                <div class="group">
+                    <label for="username" style="width: 100%;
+                    color: rgb(24, 6, 6);
+                    display: block;
+                    font-weight: 800;
+                    letter-spacing: 1px;">Name</label>
+
+                    <input type="text" autocomplete="off" placeholder="Full Name" id="name" style="border: none; 
+                    padding: 15px 20px; 
+                    border-radius: 25px; 
+                    background: rgba(88, 198, 231, 0.733); 
+                    outline: none; font-size: 15px; 
+                    font-weight: 600; 
+                    width: 100%;
+                    color: rgb(12, 1, 1);
+                    display: block;
+                    font-weight: 800;
+                    letter-spacing: 1px;">
+                </div>
+                <div class="group">
+                    <label for="username" style="width: 100%;
+                    color: rgb(20, 1, 1);
+                    display: block;
+                    font-weight: 800;
+                    letter-spacing: 1px;">Email</label>
+
+                    <input type="email" autocomplete="off" placeholder="Enter your email" id="username" style="border: none; 
+                    padding: 15px 20px; 
+                    border-radius: 25px; 
+                    background: rgba(88, 198, 231, 0.733); 
+                    outline: none; font-size: 15px; 
+                    font-weight: 600; 
+                    width: 100%;
+                    color: rgb(22, 3, 3);
+                    display: block;
+                    font-weight: 800;
+                    letter-spacing: 1px;">
+                </div>
+                <div class="group">
+                    <label for="password" style="width: 100%;
+                    color: rgb(14, 2, 2);
+                    display: block;
+                    font-weight: 800;
+                    letter-spacing: 1px;">Password</label>
+                    <div class="pass-container">
+                        <input type="password" data-type="password" autocomplete="off" placeholder="Enter your password" id="password" style="border: none; 
+                        padding: 15px 20px; 
+                        border-radius: 25px; 
+                        background: rgba(88, 198, 231, 0.733); 
+                        outline: none; 
+                        font-size: 15px; 
+                        font-weight: 600; 
+                        width: 100%;
+                        color: rgb(14, 1, 1);
+                        display: block;
+                        font-weight: 800;
+                        letter-spacing: 1px;">
+                        <span class="show-pass" id="show-pass" onclick="toggle()">
+                            <i class="fa fa-eye" onclick="myFunction(this)"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="group">
+                    <input type="submit" class="button" value="SIGN UP" style="border: none; 
+                    padding: 15px 20px; 
+                    border-radius: 25px; 
+                    background: #1161ee; 
+                    outline: none; 
+                    font-size: 15px;
+                    width: 100%;
+                    color: #fff;
+                    display: block;
+                    font-weight: 800;
+                    letter-spacing: 1px;
+                    margin: 20px auto;
+                    width: 70%;
+                    cursor: pointer;
+                    transition: all 0.3s;">
+                </div>
+                <div class="hr"></div>
+                <div class="sign-in">
+                    <h4 style="color: black;">Alreay a Member?<a href="LogIn.html" style="color: blue; text-decoration: underline; margin-left: 5px;">SIGN IN</a></h4>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</div>
+<!--js for signup and show-password-->
+<script>
+    var state = false;
+    function toggle() {
+        if(state){
+            document.getElementById("password").setAttribute("type", "password");
+            state=false;
+        }
+        else{
+            document.getElementById("password").setAttribute("type", "text");
+            state=true;
+        }
+    }
+    function myFunction(show){
+        show.classList.toggle("fa-eye-slash")
+    }
+</script>
+
+<script>
+    const form = document.getElementById('reg-form')
+    form.addEventListener('submit', registerUser)
+
+    async function registerUser(event) {
+        event.preventDefault()
+        const name = document.getElementById('name').value
+        const username = document.getElementById('username').value
+        const password = document.getElementById('password').value
+
+        const result = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                username,
+                password
+            })
+        }).then((res) => res.json())
+
+        if(result.status === 'ok'){
+            alert('Your account created successfully')
+            window.location.href = 'Home.html'
+        } 
+        else {
+            alert(result.error)
+        }
+    }
+</script>
+
+<br>
+<br>
+
+
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up || Shooz</title>
+</head>
+<body>
+    <h1>SIGN UP</h1>
+    <form id="reg-form">
+        <input type="text" autocomplete="off" placeholder="Enter you name" id="name" />
+        <input type="email" autocomplete="off" placeholder="Enter your email" id="username" />
+        <input type="text" autocomplete="off" placeholder="Enter your password" id="password" />
+        <input type="submit" value="SIGN UP" />
+    </form>
+
+    <script>
+        const form = document.getElementById('reg-form')
+        form.addEventListener('submit', registerUser)
+
+        async function registerUser(event) {
+            event.preventDefault()
+            const name = document.getElementById('name').value
+            const username = document.getElementById('username').value
+            const password = document.getElementById('password').value
+
+            const result = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name,
+                    username,
+                    password
+                })
+            }).then((res) => res.json())
+
+            if(result.status === 'ok') {
+                alert('Your account created successfully')
+            }
+            else {
+                alert(result.error)
+            }
+        }
+    </script>
+</body>
+</html>
